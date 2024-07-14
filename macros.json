@@ -1,0 +1,1740 @@
+{
+    "macros": [
+        {
+            "title": "1. Add Serial Numbers",
+            "description": "This macro code will automatically add serial numbers to your Excel sheet, which can be helpful if you work with large amounts of data. To use this code, you need to select the cell from where you want to start the serial numbers and when you run this it shows you a message box where you need to enter the highest number for the serial numbers and click OK. And once you click OK, it simply runs a loop and add a list of serial numbers to the cells downward.",
+            "code": [
+                "Sub AddSerialNumbers()",
+                "Dim i As Integer",
+                "On Error GoTo Last",
+                "i = InputBox(\"Enter Value\", \"Enter Serial Numbers\")",
+                "For i = 1 To i",
+                "ActiveCell.Value = i",
+                "ActiveCell.Offset(1, 0).Activate",
+                "Next i",
+                "Last:Exit Sub",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "2. Insert Multiple Columns",
+            "description": "This code helps you to enter multiple columns in a single click. When you run this code, it asks you the number columns you want to add and when you click OK, it adds entered number of columns after the selected cell. If you want to add columns before the selected cell, replace the xlToRight to xlToLeft in the code.",
+            "code": [
+                "Sub InsertMultipleColumns()",
+                "Dim i As Integer",
+                "Dim j As Integer",
+                "ActiveCell.EntireColumn.Select",
+                "On Error GoTo Last",
+                "i = InputBox(\"Enter number of columns to insert\", \"Insert Columns\")",
+                "For j = 1 To i",
+                "Selection.Insert Shift:=xlToRight, CopyOrigin:=xlFormatFromRightorAbove",
+                "Next j",
+                "Last: Exit Sub",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "3. Insert Multiple Rows",
+            "description": "With this code, you can enter multiple rows in the worksheet. When you run this code, you can enter the number of rows to insert and make sure to select the cell from where you want to insert the new rows. If you want to add rows before the selected cell, replace the xlToDown to xlToUp in the code.",
+            "code": [
+                "Sub InsertMultipleRows()",
+                "Dim i As Integer",
+                "Dim j As Integer",
+                "ActiveCell.EntireRow.Select",
+                "On Error GoTo Last",
+                "i = InputBox(\"Enter number of columns to insert\", \"Insert Columns\")",
+                "For j = 1 To i",
+                "Selection.Insert Shift:=xlToDown, CopyOrigin:=xlFormatFromRightorAbove",
+                "Next j",
+                "Last: Exit Sub",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "4. Auto Fit Columns",
+            "description": "This code quickly auto fits all the columns in your worksheet. When you run this code, it will select all the cells in your worksheet and instantly auto-fit all the columns.",
+            "code": [
+                "Sub AutoFitColumns()",
+                "Cells.Select",
+                "Cells.EntireColumn.AutoFit",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "5. Auto Fit Rows",
+            "description": "You can use this code to auto fit all the rows in a worksheet. When you run this code, it will select all the cells in your worksheet and instantly auto fit all the rows.",
+            "code": [
+                "Sub AutoFitRows()",
+                "Cells.Select",
+                "Cells.EntireRow.AutoFit",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "6. Remove Text Wrap",
+            "description": "This code will help you to remove text wrap from the entire worksheet with a single click. It will first select all the columns and then remove text wrap and auto fit all the rows and columns. There\u2019s also a shortcut that you can use (Alt + H +\u200cW) for but if you add this code to Quick Access Toolbar it\u2019s convenient than a\u00a0keyboard shortcut.",
+            "code": [
+                "Sub RemoveTextWrap()",
+                "Range(\"A1\").WrapText = False",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "7. Unmerge Cells",
+            "description": "This code simply uses the unmerge options which you have on the HOME\u200c tab. The benefit of using this code is you can add it to the QAT and unmerge all the cell in the selection. And if you want to un-merge a specific range you can define that range in the code by replacing the word selection.",
+            "code": [
+                "Sub UnmergeCells()",
+                "Selection.UnMerge",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "8. Open Calculator",
+            "description": "In Windows, there is a specific calculator and by using this macro code you can open that calculator directly from Excel. As I mentioned that it\u2019s for windows and if you run this code in the MAC version of VBA you\u2019ll get an error.",
+            "code": [
+                "Sub OpenCalculator()",
+                "Application.ActivateMicrosoftApp Index:=0",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "9. Add Header/Footer Date",
+            "description": "This macro adds a date to the header when you run it. It simply uses the tag \u201c&D\u201d for adding the date. You can also change it to the footer or change the side by replacing the \u201c\u201d with the date tag. And if you want to add a specific date instead of the current date you can replace the \u201c&D\u201d tag with that date from the code.",
+            "code": [
+                "Sub DateInHeader()",
+                "With ActiveSheet.PageSetup",
+                ".LeftHeader = \"\"",
+                ".CenterHeader = \"&D\"",
+                ".RightHeader = \"\"",
+                ".LeftFooter = \"\"",
+                ".CenterFooter = \"\"",
+                ".RightFooter = \"\"",
+                "End With",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "10. Custom Header/Footer",
+            "description": "When you run this code, it shows an input box that asks you to enter the text which you want to add as a header, and once you enter it click OK. If you see this closely you have six different lines of code to choose the place for the header or footer. Let\u2019s say if you want to add left-footer instead of center header simply replace the \u201cmyText\u201d to that line of the code by replacing the \u201c\u201d from there. These VBA codes will help you to format cells and ranges using some specific criteria and conditions.",
+            "code": [
+                "Sub CustomHeader()",
+                "Dim myText As String",
+                "myText = InputBox(\"Enter your text here\", \"Enter Text\")",
+                "With ActiveSheet.PageSetup",
+                ".LeftHeader = \"\"",
+                ".CenterHeader = myText",
+                ".RightHeader = \"\"",
+                ".LeftFooter = \"\"",
+                ".CenterFooter = \"\"",
+                ".RightFooter = \"\"",
+                "End With",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "11. Highlight Duplicates from Selection",
+            "description": "This macro will check each cell of your selection and highlight the duplicate values.\u00a0 You can also change the color from the code.",
+            "code": [
+                "Sub HighlightDuplicateValues()",
+                "Dim myRange As Range",
+                "Dim myCell As Range",
+                "Set myRange = Selection",
+                "For Each myCell In myRange",
+                "If WorksheetFunction.CountIf(myRange, myCell.Value) &gt; 1 Then",
+                "myCell.Interior.ColorIndex = 36",
+                "End If",
+                "Next myCell",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "12. Highlight the Active Row and Column",
+            "description": "I really love to use this macro code whenever I have to analyze a data table. Here are the quick steps to apply this code. Remember that, by applying this macro you will not able to edit the cell by double click.",
+            "code": [
+                "Private Sub Worksheet_BeforeDoubleClick(ByVal Target As Range, Cancel As Boolean)",
+                "Dim strRange As String",
+                "strRange = Target.Cells.Address & \",\" & _",
+                "Target.Cells.EntireColumn.Address & \",\" & _",
+                "Target.Cells.EntireRow.Address",
+                "Range(strRange).Select",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "13. Highlight Top 10 Values",
+            "description": "Just select a range and run this macro and it will highlight top 10 values with the green color.",
+            "code": [
+                "Sub TopTen()",
+                "Selection.FormatConditions.AddTop10",
+                "Selection.FormatConditions(Selection.FormatConditions.Count).S",
+                "tFirstPriority",
+                "With Selection.FormatConditions(1)",
+                ".TopBottom = xlTop10Top",
+                ".Rank = 10",
+                ".Percent = False",
+                "End With",
+                "With Selection.FormatConditions(1).Font",
+                ".Color = -16752384",
+                ".TintAndShade = 0",
+                "End With",
+                "With Selection.FormatConditions(1).Interior",
+                ".PatternColorIndex = xlAutomatic",
+                ".Color = 13561798",
+                ".TintAndShade = 0",
+                "End With",
+                "Selection.FormatConditions(1).StopIfTrue = False",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "14. Highlight Named Ranges",
+            "description": "If you are not sure about how many named ranges you have in your worksheet then you can use this code to highlight all of them.",
+            "code": [
+                "Sub HighlightRanges()",
+                "Dim RangeName As Name",
+                "Dim HighlightRange As Range",
+                "On Error Resume Next",
+                "For Each RangeName In ActiveWorkbook.Names",
+                "Set HighlightRange = RangeName.RefersToRange",
+                "HighlightRange.Interior.ColorIndex = 36",
+                "Next RangeName",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "15. Highlight Greater than Values",
+            "description": "Once you run this code it will ask you for the value from which you want to highlight all greater values.",
+            "code": [
+                "Sub HighlightGreaterThanValues()\nDim i As Integer\ni = InputBox(\"Enter Greater Than Value\", \"Enter Value\")\nSelection.FormatConditions.Delete\nSelection.FormatConditions.Add Type:=xlCellValue, _\nOperator:=xlGreater, Formula1:=i\nSelection.FormatConditions(Selection.FormatConditions.Count).S\ntFirstPriority\nWith Selection.FormatConditions(1)\n.Font.Color = RGB(0, 0, 0)\n.Interior.Color = RGB(31, 218, 154)\nEnd With\nEnd Sub"
+            ]
+        },
+        {
+            "title": "16. Highlight Lower Than Values",
+            "description": "Once you run this code it will ask you for the value from which you want to highlight all lower values.",
+            "code": [
+                "Sub HighlightLowerThanValues()",
+                "Dim i As Integer",
+                "i = InputBox(\"Enter Lower Than Value\", \"Enter Value\")",
+                "Selection.FormatConditions.Delete",
+                "Selection.FormatConditions.Add _",
+                "Type:=xlCellValue, _",
+                "Operator:=xlLower, _",
+                "Formula1:=i",
+                "Selection.FormatConditions(Selection.FormatConditions.Count).S",
+                "tFirstPriority",
+                "With Selection.FormatConditions(1)",
+                ".Font.Color = RGB(0, 0, 0)",
+                ".Interior.Color = RGB(217, 83, 79)",
+                "End With",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "17. Highlight Negative Numbers",
+            "description": "Select a range of cells and run this code. It will check each cell from the range and highlight all cells where you have a negative number.",
+            "code": [
+                "Sub highlightNegativeNumbers()",
+                "Dim Rng As Range",
+                "For Each Rng In Selection",
+                "If WorksheetFunction.IsNumber(Rng) Then",
+                "If Rng.Value &lt; 0 Then",
+                "Rng.Font.Color= -16776961",
+                "End If",
+                "End If",
+                "Next",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "18. Highlight Specific Text",
+            "description": "Suppose you have a large data set, and you want to check for a particular value. For this, you can use this code. When you run it, you will get an input box to enter the value to search for.",
+            "code": [
+                "Sub highlightValue()",
+                "Dim myStr As String",
+                "Dim myRg As range",
+                "Dim myTxt As String",
+                "Dim myCell As range",
+                "Dim myChar As String",
+                "Dim I As Long",
+                "Dim J As Long",
+                "On Error Resume Next",
+                "If ActiveWindow.RangeSelection.Count &gt; 1 Then",
+                "myTxt = ActiveWindow.RangeSelection.AddressLocal",
+                "Else",
+                "myTxt = ActiveSheet.UsedRange.AddressLocal",
+                "End If",
+                "LInput: Set myRg = _",
+                "Application.InputBox _",
+                "(\"please select the data range:\", \"Selection Required\", myTxt, , , , , 8)",
+                "If myRg Is Nothing Then",
+                "Exit Sub",
+                "If myRg.Areas.Count &gt; 1 Then",
+                "MsgBox \"not support multiple columns\"",
+                "GoTo LInput",
+                "End If",
+                "If myRg.Columns.Count &lt;&gt; 2 Then",
+                "MsgBox \"the selected range can only contain two columns \"",
+                "GoTo LInput",
+                "End If",
+                "For I = 0 To myRg.Rows.Count - 1",
+                "myStr = myRg.range(\"B1\").Offset(I, 0).Value",
+                "With myRg.range(\"A1\").Offset(I, 0)",
+                ".Font.ColorIndex = 1",
+                "For J = 1 To Len(.Text)",
+                "Mid(.Text, J, Len(myStr)) = myStrThen",
+                ".Characters(J, Len(myStr)).Font.ColorIndex = 3",
+                "Next",
+                "End With",
+                "Next I",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "19. Highlight Cells with Comments",
+            "description": "To highlight all the cells with comments use this macro.",
+            "code": [
+                "Sub highlightCommentCells()",
+                "Selection.SpecialCells(xlCellTypeComments).Select",
+                "Selection.Style= \"Note\"",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "20. Highlight Alternate Rows in the Selection",
+            "description": "By highlighting alternate rows, you can make your data easily readable, and for this, you can use below VBA code. It will simply highlight every alternate row in selected range.",
+            "code": [
+                "Sub highlightAlternateRows()",
+                "Dim rng As Range",
+                "For Each rng In Selection.Rows",
+                "If rng.Row Mod 2 = 1 Then",
+                "rng.Style = \"20% -Accent1\"",
+                "rng.Value = rng ^ (1 / 3)",
+                "Else",
+                "End If",
+                "Next rng",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "21. Highlight Cells with Misspelled Words",
+            "description": "If you find hard to check all the cells for spelling error, then this code is for you. It will check each cell from the selection and highlight the cell where is a misspelled word.",
+            "code": [
+                "Sub HighlightMisspelledCells()",
+                "Dim rng As Range",
+                "For Each rng In ActiveSheet.UsedRange",
+                "If Not Application.CheckSpelling(word:=rng.Text) Then",
+                "rng.Style = \"Bad\"",
+                "End If",
+                "Next rng",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "22. Highlight Cells with Error in the Entire Worksheet",
+            "description": "To highlight and count all the cells in which you have an error, this code will help you. Just run this code and it will return a message with the number error cells and highlight all the cells.",
+            "code": [
+                "Sub highlightErrors()",
+                "Dim rng As Range",
+                "Dim i As Integer",
+                "For Each rng In ActiveSheet.UsedRange",
+                "If WorksheetFunction.IsError(rng) Then",
+                "i = i + 1",
+                "rng.Style = \"bad\"",
+                "End If",
+                "Next rng",
+                "MsgBox _",
+                "\"There are total \" & i _",
+                "& \" error(s) in this worksheet.\"",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "23. Highlight Cells with a Specific Text in Worksheet",
+            "description": "This code will help you to count the cells which have a specific value which you will mention and after that highlight all those cells.",
+            "code": [
+                "Sub highlightSpecificValues()",
+                "Dim rng As range",
+                "Dim i As Integer",
+                "Dim c As Variant",
+                "c = InputBox(\"Enter Value To Highlight\")",
+                "For Each rng In ActiveSheet.UsedRange",
+                "If rng = c Then",
+                "rng.Style = \"Note\"",
+                "i = i + 1",
+                "End If",
+                "Next rng",
+                "MsgBox \"There are total \" & i & \" \" & c & \" in this worksheet.\"",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "24. Highlight all the Blank Cells Invisible Space",
+            "description": "Sometimes there are some cells which are blank, but they have a single space and due to this, it\u2019s really hard to identify them. This code will check all the cell in the worksheet and highlight all the cells which have a single space.",
+            "code": [
+                "Sub blankWithSpace()",
+                "Dim rng As Range",
+                "For Each rng In ActiveSheet.UsedRange",
+                "If rng.Value = \" \" Then",
+                "rng.Style = \"Note\"",
+                "End If",
+                "Next rng",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "25. Highlight Max Value in the Range",
+            "description": "It will check all the selected cells and highlight the cell with the maximum value.",
+            "code": [
+                "Sub highlightMaxValue()",
+                "Dim rng As Range",
+                "For Each rng In Selection",
+                "If rng = WorksheetFunction.Max(Selection) Then",
+                "rng.Style = \"Good\"",
+                "End If",
+                "Next rng",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "26. Highlight Min Value in the Range",
+            "description": "It will check all the selected cells and highlight the cell with the Minimum value.",
+            "code": [
+                "Sub Highlight_Min_Value()",
+                "Dim rng As Range",
+                "For Each rng In Selection",
+                "If rng = WorksheetFunction.Min(Selection) Then",
+                "rng.Style = \"Good\"",
+                "End If",
+                "Next rng",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "27. Highlight Unique Values",
+            "description": "This code will highlight all the cells from the selection which has a unique value.",
+            "code": [
+                "Sub highlightUniqueValues()",
+                "Dim rng As Range",
+                "Set rng = Selection",
+                "rng.FormatConditions.Delete",
+                "Dim uv As UniqueValues",
+                "Set uv = rng.FormatConditions.AddUniqueValues",
+                "uv.DupeUnique = xlUnique",
+                "uv.Interior.Color = vbGreen",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "28. Highlight Difference in Columns",
+            "description": "Using this code, you can highlight the difference between two columns (corresponding cells).",
+            "code": [
+                "Sub columnDifference()",
+                "Range(\"H7:H8,I7:I8\").Select",
+                "Selection.ColumnDifferences(ActiveCell).Select",
+                "Selection.Style= \"Bad\"",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "29. Highlight Difference in Rows",
+            "description": "And by using this code you can highlight difference between two row (corresponding cells).",
+            "code": [
+                "Sub rowDifference()",
+                "Range(\"H7:H8,I7:I8\").Select",
+                "Selection.RowDifferences(ActiveCell).Select",
+                "Selection.Style= \"Bad\"",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "30. Print Comments",
+            "description": "Use this macro to activate settings to print cell comments in the end of the page. Let\u2019s say you have 10 pages to print, after using this code you will get all the comments on 11th last page.",
+            "code": [
+                "Sub printComments()",
+                "With ActiveSheet.PageSetup",
+                ".printComments = xlPrintSheetEnd",
+                "End With",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "31. Print Narrow Margin",
+            "description": "Use this VBA code to take a print with a narrow margin. When you run this macro it will automatically change margins to narrow.",
+            "code": [
+                "Sub printNarrowMargin()",
+                "With ActiveSheet.PageSetup",
+                ".LeftMargin = Application",
+                ".InchesToPoints (0.25)",
+                ".RightMargin = Application.InchesToPoints(0.25)",
+                ".TopMargin = Application.InchesToPoints(0.75)",
+                ".BottomMargin = Application.InchesToPoints(0.75)",
+                ".HeaderMargin = Application.InchesToPoints(0.3)",
+                ".FooterMargin = Application.InchesToPoints(0.3)",
+                "End With",
+                "ActiveWindow.SelectedSheets.PrintOut _",
+                "Copies:=1, _",
+                "Collate:=True, _",
+                "IgnorePrintAreas:=False",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "32. Print Selection",
+            "description": "This code will help you print selected range. You don\u2019t need to go to printing options and set printing range. Just select a range and run this code.",
+            "code": [
+                "Sub printSelection()",
+                "Selection.PrintOut Copies:=1, Collate:=True",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "33. Print Custom Pages",
+            "description": "Instead of using the setting from print options you can use this code to print custom page range. Let\u2019s say you want to print pages from 5 to 10. You just need to run this VBA code and enter start page and end page.",
+            "code": [
+                "Sub printCustomSelection()",
+                "Dim startpage As Integer",
+                "Dim endpage As Integer",
+                "startpage = _",
+                "InputBox(\"Please Enter Start Page number.\", \"Enter Value\")",
+                "If Not WorksheetFunction.IsNumber(startpage) Then",
+                "MsgBox _",
+                "\"Invalid Start Page number. Please try again.\", \"Error\"",
+                "Exit Sub",
+                "End If",
+                "endpage = _",
+                "InputBox(\"Please Enter End Page number.\", \"Enter Value\")",
+                "If Not WorksheetFunction.IsNumber(endpage) Then",
+                "MsgBox _",
+                "\"Invalid End Page number. Please try again.\", \"Error\"",
+                "Exit Sub",
+                "End If",
+                "Selection.PrintOut From:=startpage, _",
+                "To:=endpage, Copies:=1, Collate:=True",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "34. Hide all but the Active Worksheet",
+            "description": "Now, let\u2019s say if you want to hide all the worksheets in your workbook other than the active worksheet. This macro code will do this for you. Related: VBA Functions List",
+            "code": [
+                "Sub HideWorksheet()",
+                "Dim ws As Worksheet",
+                "For Each ws In ThisWorkbook.Worksheets",
+                "If ws.Name &lt;&gt; ThisWorkbook.ActiveSheet.Name Then",
+                "ws.Visible = xlSheetHidden",
+                "End If",
+                "Next ws",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "35. Unhide all Hidden Worksheets",
+            "description": "And if you want to un-hide all the worksheets which you have hide with previous code, here is the code for that.",
+            "code": [
+                "Sub UnhideAllWorksheet()",
+                "Dim ws As Worksheet",
+                "For Each ws In ActiveWorkbook.Worksheets",
+                "ws.Visible = xlSheetVisible",
+                "Next ws",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "36. Delete All but the Active Worksheet",
+            "description": "If you want to delete all the worksheets other than the active sheet, this macro is useful for you. When you run this macro, it will compare the name of the active worksheet with other worksheets and then delete them.",
+            "code": [
+                "Sub DeleteWorksheets()",
+                "Dim ws As Worksheet",
+                "For Each ws In ThisWorkbook.Worksheets",
+                "If ws.name &lt;&gt; ThisWorkbook.ActiveSheet.name Then",
+                "Application.DisplayAlerts = False",
+                "ws.Delete",
+                "Application.DisplayAlerts = True",
+                "End If",
+                "Next ws",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "37. Protect all Worksheets Instantly",
+            "description": "If you want to protect your all worksheets in one go here is a code for you. When you run this macro, you will get an input box to enter a password. Once you enter your password, click OK. And make sure to take care about CAPS.",
+            "code": [
+                "Sub ProtectAllWorskeets()",
+                "Dim ws As Worksheet",
+                "Dim ps As String",
+                "ps = InputBox(\"Enter a Password.\", vbOKCancel)",
+                "For Each ws In ActiveWorkbook.Worksheets",
+                "ws.Protect Password:=ps",
+                "Next ws",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "38. Resize All Charts in a Worksheet",
+            "description": "Make all chart same in size. This macro code will help you to make all the charts of the same size. You can change the height and width of charts by changing it in macro code.",
+            "code": [
+                "Sub Resize_Charts()",
+                "Dim i As Integer",
+                "For i = 1 To ActiveSheet.ChartObjects.Count",
+                "With ActiveSheet.ChartObjects(i)",
+                ".Width = 300",
+                ".Height = 200",
+                "End With",
+                "Next i",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "39. Insert Multiple Worksheets",
+            "description": "You can use this code if you want to add multiple worksheets in your workbook in a single shot. When you run this macro code you will get an input box to enter the total number of sheets you want to enter.",
+            "code": [
+                "Sub InsertMultipleSheets()",
+                "Dim i As Integer",
+                "i = _",
+                "InputBox(\"Enter number of sheets to insert.\", _",
+                "\"Enter Multiple Sheets\")",
+                "Sheets.Add After:=ActiveSheet, Count:=i",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "40. Protect Worksheet",
+            "description": "If you want to protect your worksheet you can use this macro code. All you have to do just mention your password in the code.",
+            "code": [
+                "Sub ProtectWS()",
+                "ActiveSheet.Protect \"mypassword\", True, True",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "41. Un-Protect Worksheet",
+            "description": "If you want to unprotect your worksheet you can use this macro code. All you have to do just mention your password which you have used while protecting your worksheet.",
+            "code": [
+                "Sub UnprotectWS()",
+                "ActiveSheet.Unprotect \"mypassword\"",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "42. Sort Worksheets",
+            "description": "This code will help you to sort worksheets in your workbook according to their name.",
+            "code": [
+                "Sub SortWorksheets()",
+                "Dim i As Integer",
+                "Dim j As Integer",
+                "Dim iAnswer As VbMsgBoxResult",
+                "iAnswer = MsgBox(\"Sort Sheets in Ascending Order?\" & Chr(10) _",
+                "& \"Clicking No will sort in Descending Order\", _",
+                "vbYesNoCancel + vbQuestion + vbDefaultButton1, \"Sort Worksheets\")",
+                "For i = 1 To Sheets.Count",
+                "For j = 1 To Sheets.Count - 1",
+                "If iAnswer = vbYes Then",
+                "If UCase$(Sheets(j).Name) &gt; UCase$(Sheets(j + 1).Name) Then",
+                "Sheets(j).Move After:=Sheets(j + 1)",
+                "End If",
+                "ElseIf iAnswer = vbNo Then",
+                "If UCase$(Sheets(j).Name) &lt; UCase$(Sheets(j + 1).Name) Then Sheets(j).Move After:=Sheets(j + 1)",
+                "End If",
+                "End If",
+                "Next j",
+                "Next i",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "43. Protect all the Cells with Formulas",
+            "description": "To protect cell with formula with a single click you can use this code.",
+            "code": [
+                "Sub lockCellsWithFormulas()",
+                "With ActiveSheet",
+                ".Unprotect",
+                ".Cells.Locked = False",
+                ".Cells.SpecialCells(xlCellTypeFormulas).Locked = True",
+                ".Protect AllowDeletingRows:=True",
+                "End With",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "44. Delete all Blank Worksheets",
+            "description": "Run this code and it will check all the worksheets in the active workbook and delete if a worksheet is blank.",
+            "code": [
+                "Sub deleteBlankWorksheets()",
+                "Dim Ws As Worksheet",
+                "On Error Resume Next",
+                "Application.ScreenUpdating= False",
+                "Application.DisplayAlerts= False",
+                "For Each Ws In Application.Worksheets",
+                "If Application.WorksheetFunction.CountA(Ws.UsedRange) = 0 Then",
+                "Ws.Delete",
+                "End If",
+                "Next",
+                "Application.ScreenUpdating= True",
+                "Application.DisplayAlerts= True",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "45. Unhide all Rows and Columns",
+            "description": "Instead of unhiding rows and columns on by one manually you can use this code to do this in a single go.",
+            "code": [
+                "Sub UnhideRowsColumns()",
+                "Columns.EntireColumn.Hidden = False",
+                "Rows.EntireRow.Hidden = False",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "46. Save Each Worksheet as a Single PDF",
+            "description": "This code will simply save all the worksheets in a separate PDF file. You just need to change the folder name from the code.",
+            "code": [
+                "Sub SaveWorkshetAsPDF()",
+                "Dimws As Worksheet",
+                "For Each ws In Worksheets",
+                "ws.ExportAsFixedFormat _",
+                "xlTypePDF, _",
+                "\"ENTER-FOLDER-NAME-HERE\" &; _",
+                "ws.Name & \".pdf\"",
+                "Next ws",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "47. Disable Page Breaks",
+            "description": "To disable page breaks use this code. It will simply disable page breaks from all the open workbooks. These codes will help you to perform workbook level tasks\u00a0in an easy way and with minimum efforts.",
+            "code": [
+                "Sub DisablePageBreaks()",
+                "Dim wb As Workbook",
+                "Dim wks As Worksheet",
+                "Application.ScreenUpdating = False",
+                "For Each wb In Application.Workbooks",
+                "For Each Sht In wb.Worksheets",
+                "Sht.DisplayPageBreaks = False",
+                "Next Sht",
+                "Next wb",
+                "Application.ScreenUpdating = True",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "48. Create a Backup of a Current Workbook",
+            "description": "This is one of the most useful macros which can help you to save a backup file of your current workbook. It will save a backup file in the same directory where your current file is saved and it will also add the current date with the name of the file.",
+            "code": [
+                "Sub FileBackUp()",
+                "ThisWorkbook.SaveCopyAs Filename:=ThisWorkbook.Path & _",
+                "\"\" & Format(Date, \"mm-dd-yy\") & \" \" & _",
+                "ThisWorkbook.name",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "49. Close all Workbooks at Once",
+            "description": "Use this macro code to close all open workbooks. This macro code will first check all the workbooks one by one and close them. If any of the worksheets is not saved, you\u2019ll get a message to save it.",
+            "code": [
+                "Sub CloseAllWorkbooks()",
+                "Dim wbs As Workbook",
+                "For Each wbs In Workbooks",
+                "wbs.Close SaveChanges:=True",
+                "Next wb",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "50. Copy Active Worksheet into a New Workbook",
+            "description": "Let\u2019s say if you want to copy your active worksheet in a new workbook, just run this macro code and it will do the same for you. It\u2019s a super time saver.",
+            "code": [
+                "Sub CopyWorksheetToNewWorkbook()",
+                "ThisWorkbook.ActiveSheet.Copy _",
+                "Before:=Workbooks.Add.Worksheets(1)",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "51. Active Workbook in an Email",
+            "description": "Use this macro code to quickly send your active workbook in an e-mail. You can change the subject, email, and body text in code and if you want to send this mail directly, use \u201c.Send\u201d instead of \u201c.Display\u201d.",
+            "code": [
+                "Sub Send_Mail()",
+                "Dim OutApp As Object",
+                "Dim OutMail As Object",
+                "Set OutApp = CreateObject(\"Outlook.Application\")",
+                "Set OutMail = OutApp.CreateItem(0)",
+                "With OutMail",
+                ".to = \"Sales@FrontLinePaper.com\"",
+                ".Subject = \"Growth Report\"",
+                ".Body = \"Hello Team, Please find attached Growth Report.\"",
+                ".Attachments.Add ActiveWorkbook.FullName",
+                ".display",
+                "End With",
+                "Set OutMail = Nothing",
+                "Set OutApp = Nothing",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "52. Add Workbook to a Mail Attachment",
+            "description": "Once you run this macro it will open your default mail client and attached active workbook with it as an attachment.",
+            "code": [
+                "Sub OpenWorkbookAsAttachment()",
+                "Application.Dialogs(xlDialogSendMail).Show",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "53. Welcome Message",
+            "description": "You can use auto_open to perform a task on opening a file and all you have to do just name your macro \u201cauto_open\u201d.",
+            "code": [
+                "Sub auto_open()",
+                "MsgBox _",
+                "\"Welcome To ExcelChamps &amp; Thanks for downloading this file.\"",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "54. Closing Message",
+            "description": "You can use close_open to perform a task on opening a file and all you have to do just name your macro \u201cclose_open\u201d.",
+            "code": [
+                "Sub auto_close()",
+                "MsgBox \"Bye Bye! Don't forget to check other cool stuff on",
+                "excelchamps.com\"",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "55. Count Open Unsaved Workbooks",
+            "description": "Let\u2019s you have 5-10 open workbooks; you can use this code to get the number of workbooks which are not saved yet.",
+            "code": [
+                "Sub VisibleWorkbooks()",
+                "Dim book As Workbook",
+                "Dim i As Integer",
+                "For Each book In Workbooks",
+                "If book.Saved = False Then",
+                "i = i + 1",
+                "End If",
+                "Next book",
+                "MsgBox i",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "56. Hide Pivot Table Subtotals",
+            "description": "If you want to hide all the subtotals, just run this code. First of all, make sure to select a cell from your pivot table and then run this macro.",
+            "code": [
+                "Sub HideSubtotals()",
+                "Dim pt As PivotTable",
+                "Dim pf As PivotField",
+                "On Error Resume Next",
+                "Set pt = ActiveSheet.PivotTables(ActiveCell.PivotTable.Name)",
+                "If pt Is Nothing Then",
+                "MsgBox \"You must place your cursor inside of a PivotTable.\"",
+                "Exit Sub",
+                "End If",
+                "For Each pf In pt.PivotFields",
+                "pf.Subtotals(1) = True",
+                "pf.Subtotals(1) = False",
+                "Next pf",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "57. Refresh All Pivot Tables",
+            "description": "A super quick method to refresh all pivot tables. Just run this code and all of your pivot tables in your workbook will be refresh in a single shot.",
+            "code": [
+                "Sub vba_referesh_all_pivots()",
+                "Dim pt As PivotTable",
+                "For Each pt In ActiveWorkbook.PivotTables",
+                "pt.RefreshTable",
+                "Next pt",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "58. Create a Pivot Table",
+            "description": "Follow this step-by-step guide to create a pivot table using VBA.",
+            "code": []
+        },
+        {
+            "title": "59. Auto Update Pivot Table Range",
+            "description": "If you are not using Excel tables, then you can use this code to update pivot table range.",
+            "code": [
+                "Sub UpdatePivotTableRange()",
+                "Dim Data_Sheet As Worksheet",
+                "Dim Pivot_Sheet As Worksheet",
+                "Dim StartPoint As Range",
+                "Dim DataRange As Range",
+                "Dim PivotName As String",
+                "Dim NewRange As String",
+                "Dim LastCol As Long",
+                "Dim lastRow As Long",
+                "'Set Pivot Table &amp; Source Worksheet",
+                "Set Data_Sheet = ThisWorkbook.Worksheets(\"PivotTableData3\")",
+                "Set Pivot_Sheet = ThisWorkbook.Worksheets(\"Pivot3\")",
+                "'Enter in Pivot Table Name",
+                "PivotName = \"PivotTable2\"",
+                "'Defining Staring Point &amp; Dynamic Range",
+                "Data_Sheet.Activate",
+                "Set StartPoint = Data_Sheet.Range(\"A1\")",
+                "LastCol = StartPoint.End(xlToRight).Column",
+                "DownCell = StartPoint.End(xlDown).Row",
+                "Set DataRange = Data_Sheet.Range(StartPoint, Cells(DownCell, LastCol))",
+                "NewRange = Data_Sheet.Name &amp; \"!\" &amp; DataRange.Address(ReferenceStyle:=xlR1C1)",
+                "'Change Pivot Table Data Source Range Address",
+                "Pivot_Sheet.PivotTables(PivotName). _",
+                "ChangePivotCache ActiveWorkbook. _",
+                "PivotCaches.Create(SourceType:=xlDatabase, SourceData:=NewRange)",
+                "'Ensure Pivot Table is Refreshed",
+                "Pivot_Sheet.PivotTables(PivotName).RefreshTable",
+                "'Complete Message",
+                "Pivot_Sheet.Activate",
+                "MsgBox \"Your Pivot Table is now updated.\"",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "60. Disable/Enable Get Pivot Data",
+            "description": "To disable/enable GetPivotData function you need to go to the Excel options. But with this code you can do it in a single click.",
+            "code": [
+                "Sub activateGetPivotData()",
+                "Application.GenerateGetPivotData = True",
+                "End Sub",
+                "Sub deactivateGetPivotData()",
+                "Application.GenerateGetPivotData = False",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "61. Change Chart Type",
+            "description": "This code will help you to convert chart type without using chart options from the tab. All you have to do just specify to which type you want to convert. Below code will convert selected chart to a clustered column chart. There are different codes for different types, you can find all those types from here.",
+            "code": [
+                "Sub ChangeChartType()",
+                "ActiveChart.ChartType = xlColumnClustered",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "62. Paste Chart as an Image",
+            "description": "This code will help you to convert your chart into an image. You just need to select your chart and run this code.",
+            "code": [
+                "Sub ConvertChartToPicture()",
+                "ActiveChart.ChartArea.Copy",
+                "ActiveSheet.Range(\"A1\").Select",
+                "ActiveSheet.Pictures.Paste.Select",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "63. Add Chart Title",
+            "description": "First of all, you need to select your chart and the run this code. You will get an input box to enter chart title.",
+            "code": [
+                "Sub AddChartTitle()",
+                "Dim i As Variant",
+                "i = InputBox(\"Please enter your chart title\", \"Chart Title\")",
+                "On Error GoTo Last",
+                "ActiveChart.SetElement (msoElementChartTitleAboveChart)",
+                "ActiveChart.ChartTitle.Text = i",
+                "Last:",
+                "Exit Sub",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "64. Save Selected Range as a PDF",
+            "description": "If you want to hide all the subtotals, just run this code. First of all, make sure to select a cell from your pivot table and then run this macro.",
+            "code": [
+                "Sub HideSubtotals()",
+                "Dim pt As PivotTable",
+                "Dim pf As PivotField",
+                "On Error Resume Next",
+                "Set pt = ActiveSheet.PivotTables(ActiveCell.PivotTable.name)",
+                "If pt Is Nothing Then",
+                "MsgBox \"You must place your cursor inside of a PivotTable.\"",
+                "Exit Sub",
+                "End If",
+                "For Each pf In pt.PivotFields",
+                "pf.Subtotals(1) = True",
+                "pf.Subtotals(1) = False",
+                "Next pf",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "65. Create a Table of Content",
+            "description": "Let\u2019s say you have more than 100 worksheets in your workbook and it\u2019s hard to navigate now. Don\u2019t worry this macro code will rescue everything. When you run this code, it will create a new worksheet and create a index of worksheets with a hyperlink to them.",
+            "code": [
+                "Sub TableofContent()",
+                "Dim i As Long",
+                "On Error Resume Next",
+                "Application.DisplayAlerts = False",
+                "Worksheets(\"Table of Content\").Delete",
+                "Application.DisplayAlerts = True",
+                "On Error GoTo 0",
+                "ThisWorkbook.Sheets.Add Before:=ThisWorkbook.Worksheets(1)",
+                "ActiveSheet.Name = \"Table of Content\"",
+                "For i = 1 To Sheets.Count",
+                "With ActiveSheet",
+                ".Hyperlinks.Add _",
+                "Anchor:=ActiveSheet.Cells(i, 1), _",
+                "Address:=\"\", _",
+                "SubAddress:=\"'\" &amp; Sheets(i).Name &amp; \"'!A1\", _",
+                "ScreenTip:=Sheets(i).Name, _",
+                "TextToDisplay:=Sheets(i).Name",
+                "End With",
+                "Next i",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "66. Convert Range into an Image",
+            "description": "Paste selected range as an image. You just have to select the range and once you run this code it will automatically insert a picture for that range.",
+            "code": [
+                "Sub PasteAsPicture()",
+                "Application.CutCopyMode = False",
+                "Selection.Copy",
+                "ActiveSheet.Pictures.Paste.Select",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "67. Insert a Linked Picture",
+            "description": "This VBA code will convert your selected range into a linked picture and you can use that image anywhere you want.",
+            "code": [
+                "Sub LinkedPicture()",
+                "Selection.Copy",
+                "ActiveSheet.Pictures.Paste(Link:=True).Select",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "68. Use Text to Speech",
+            "description": "Just select a range and run this code. Excel will speak all the text what you have in that range, cell by cell.",
+            "code": [
+                "Sub Speak()",
+                "Selection.Speak",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "69. Activate Data Entry Form",
+            "description": "There is a default data entry form\u00a0which you can use for data entry.",
+            "code": [
+                "Sub DataForm()",
+                "ActiveSheet.ShowDataForm",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "70. Use Goal Seek",
+            "description": "Goal Seek can be super helpful for you to solve complex problems. Learn more about goal seek from here before you use this code.",
+            "code": [
+                "Sub GoalSeekVBA()",
+                "Dim Target As Long",
+                "On Error GoTo Errorhandler",
+                "Target = InputBox(\"Enter the required value\", \"Enter Value\")",
+                "Worksheets(\"Goal_Seek\").Activate",
+                "With ActiveSheet.Range(\"C7\")",
+                ".GoalSeek_ Goal:=Target, _",
+                "ChangingCell:=Range(\"C2\")",
+                "End With",
+                "Exit Sub",
+                "Errorhandler: MsgBox (\"Sorry, value is not valid.\")",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "71. VBA Code to Search on Google",
+            "description": "",
+            "code": [
+                "Sub SearchWindow32()",
+                "Dim chromePath As String",
+                "Dim search_string As String",
+                "Dim query As String",
+                "query = InputBox(\"Enter here your search here\", \"Google Search\")",
+                "search_string = query",
+                "search_string = Replace(search_string, \" \", \"+\")",
+                "'Uncomment the following line for Windows 64 versions and comment out Windows 32 versions'",
+                "'chromePath = \"C:Program FilesGoogleChromeApplicationchrome.exe\"",
+                "'Uncomment the following line for Windows 32 versions and comment out Windows 64 versions",
+                "'chromePath = \"C:Program Files (x86)GoogleChromeApplicationchrome.exe\"",
+                "Shell (chromePath &amp; \" -url http://google.com/#q=\" &amp; search_string)",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "72. Convert all Formulas into Values",
+            "description": "Simply convert formulas into values. When you run this macro it will quickly change the formulas into absolute values.",
+            "code": [
+                "Sub convertToValues()",
+                "Dim MyRange As Range",
+                "Dim MyCell As Range",
+                "Select Case _",
+                "MsgBox(\"You Can't Undo This Action. \" _",
+                "&amp; \"Save Workbook First?\", vbYesNoCancel, _",
+                "\"Alert\")",
+                "Case Is = vbYes",
+                "ThisWorkbook.Save",
+                "Case Is = vbCancel",
+                "Exit Sub",
+                "End Select",
+                "Set MyRange = Selection",
+                "For Each MyCell In MyRange",
+                "If MyCell.HasFormula Then",
+                "MyCell.Formula = MyCell.Value",
+                "End If",
+                "Next MyCell",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "73. Remove Spaces from Selected Cells",
+            "description": "One of the most useful macros from this list. It will check your selection and then remove all the extra spaces from that.",
+            "code": [
+                "Sub RemoveSpaces()",
+                "Dim myRange As Range",
+                "Dim myCell As Range",
+                "Select Case MsgBox(\"You Can't Undo This Action. \" _",
+                "&amp; \"Save Workbook First?\", _",
+                "vbYesNoCancel, \"Alert\")",
+                "Case Is = vbYesThisWorkbook.Save",
+                "Case Is = vbCancel",
+                "Exit Sub",
+                "End Select",
+                "Set myRange = Selection",
+                "For Each myCell In myRange",
+                "If Not IsEmpty(myCell) Then",
+                "myCell = Trim(myCell)",
+                "End If",
+                "Next myCell",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "74. Remove Characters from a String",
+            "description": "Simply remove characters from the starting of a text string. All you need is to refer to a cell or insert a text into the function and number of characters to remove from the text string. It has two arguments \u201crng\u201d for the text string and \u201ccnt\u201d for the count of characters to remove. For Example: If you want to remove first characters from a cell, you need to enter 1 in cnt.",
+            "code": [
+                "Public Function removeFirstC(rng As String, cnt As Long)",
+                "removeFirstC = Right(rng, Len(rng) - cnt)",
+                "End Function"
+            ]
+        },
+        {
+            "title": "75. Add Insert Degree Symbol in Excel",
+            "description": "Let\u2019s say you have a list of numbers in a column and you want to add degree symbol with all of them.",
+            "code": [
+                "Sub degreeSymbol( )",
+                "Dim rng As Range",
+                "For Each rng In Selection",
+                "rng.Select",
+                "If ActiveCell &lt;&gt; \"\" Then",
+                "If IsNumeric(ActiveCell.Value) Then",
+                "ActiveCell.Value = ActiveCell.Value &amp; \"\u00b0\"",
+                "End If",
+                "End If",
+                "Next",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "76. Reverse Text",
+            "description": "All you have to do just enter \u201crvrse\u201d function in a cell and refer to the cell in which you have text which you want to reverse.",
+            "code": [
+                "Public Function rvrse(ByVal cell As Range) As String",
+                "rvrse = VBA.strReverse(cell.Value)",
+                "End Function"
+            ]
+        },
+        {
+            "title": "77. Activate R1C1 Reference Style",
+            "description": "This macro code will help you to activate R1C1 reference style without using Excel options.",
+            "code": [
+                "Sub ActivateR1C1()",
+                "If Application.ReferenceStyle = xlA1 Then",
+                "Application.ReferenceStyle = xlR1C1",
+                "Else",
+                "Application.ReferenceStyle = xlR1C1",
+                "End If",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "78. Activate A1 Reference Style",
+            "description": "This macro code will help you to activate A1 reference style without using Excel options.",
+            "code": [
+                "Sub ActivateA1()",
+                "If Application.ReferenceStyle = xlR1C1 Then",
+                "Application.ReferenceStyle = xlA1",
+                "Else",
+                "Application.ReferenceStyle = xlA1",
+                "End If",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "79. Insert Time Range",
+            "description": "With this code, you can insert a time range in sequence from 00:00 to 23:00.",
+            "code": [
+                "Sub TimeStamp()",
+                "Dim i As Integer",
+                "For i = 1 To 24",
+                "ActiveCell.FormulaR1C1 = i &amp; \":00\"",
+                "ActiveCell.NumberFormat = \"[$-409]h:mm AM/PM;@\"",
+                "ActiveCell.Offset(RowOffset:=1, ColumnOffset:=0).Select",
+                "Next i",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "80. Convert Date into Day",
+            "description": "If you have dates in your worksheet and you want to convert all those dates into days then this code is for you. Simply select the range of cells and run this macro.",
+            "code": [
+                "Sub date2day()",
+                "Dim tempCell As Range",
+                "Selection.Value = Selection.Value",
+                "For Each tempCell In Selection",
+                "If IsDate(tempCell) = True Then",
+                "With tempCell",
+                ".Value = Day(tempCell)",
+                ".NumberFormat = \"0\"",
+                "End With",
+                "End If",
+                "Next tempCell",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "81. Convert Date into Year",
+            "description": "This code will convert dates into years.",
+            "code": [
+                "Sub date2year()",
+                "Dim tempCell As Range",
+                "Selection.Value = Selection.Value",
+                "For Each tempCell In Selection",
+                "If IsDate(tempCell) = True Then",
+                "With tempCell",
+                ".Value = Year(tempCell)",
+                ".NumberFormat = \"0\"",
+                "End With",
+                "End If",
+                "Next tempCell",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "82. Remove Time from Date",
+            "description": "If you have time with the date and you want to remove it then you can use this code.",
+            "code": [
+                "Sub removeTime()",
+                "Dim Rng As Range",
+                "For Each Rng In Selection",
+                "If IsDate(Rng) = True Then",
+                "Rng.Value = VBA.Int(Rng.Value)",
+                "End If",
+                "Next",
+                "Selection.NumberFormat = \"dd-mmm-yy\"",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "83. Remove Date from Date and Time",
+            "description": "It will return only time from a date and time value.",
+            "code": [
+                "Sub removeDate()",
+                "Dim Rng As Range",
+                "For Each Rng In Selection",
+                "If IsDate(Rng) = True Then",
+                "Rng.Value = Rng.Value - VBA.Fix(Rng.Value)",
+                "End If",
+                "NextSelection.NumberFormat = \"hh:mm:ss am/pm\"",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "84. Convert to Upper Case",
+            "description": "Select the cells and run this code. It will check each and every cell of selected range and then convert it into upper case text.",
+            "code": [
+                "Sub convertUpperCase()",
+                "Dim Rng As Range",
+                "For Each Rng In Selection",
+                "If Application.WorksheetFunction.IsText(Rng) Then",
+                "Rng.Value = UCase(Rng)",
+                "End If",
+                "Next",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "85. Convert to Lower Case",
+            "description": "This code will help you to convert selected text into lower case text. Just select a range of cells where you have text and run this code. If a cell has a number or any value other than text that value will remain same.",
+            "code": [
+                "Sub convertLowerCase()",
+                "Dim Rng As Range",
+                "For Each Rng In Selection",
+                "If Application.WorksheetFunction.IsText(Rng) Then",
+                "Rng.Value= LCase(Rng)",
+                "End If",
+                "Next",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "86. Convert to Proper Case",
+            "description": "And this code will convert selected text into the proper case where you have the first letter in capital and rest in small.",
+            "code": [
+                "Sub convertProperCase()",
+                "Dim Rng As Range",
+                "For Each Rng In Selection",
+                "If WorksheetFunction.IsText(Rng) Then",
+                "Rng.Value = WorksheetFunction.Proper(Rng.Value)",
+                "End If",
+                "Next",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "87. Convert to Sentence Case",
+            "description": "In text case, you have the first letter of the first word in capital and rest all in words in small for a single sentence and this code will help you convert normal text into sentence case.",
+            "code": [
+                "Sub convertTextCase()",
+                "Dim Rng As Range",
+                "For Each Rng In Selection",
+                "If WorksheetFunction.IsText(Rng) Then",
+                "Rng.Value = UCase(Left(Rng, 1)) &amp; LCase(Right(Rng, Len(Rng) - 1))",
+                "End If",
+                "Next Rng",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "88. Remove a Character from Selection",
+            "description": "To remove a particular character from a selected cell you can use this code. It will show you an input box to enter the character you want to remove.",
+            "code": [
+                "Sub removeChar()",
+                "Dim Rng As Range",
+                "Dim rc As String",
+                "rc = InputBox(\"Character(s) to Replace\", \"Enter Value\")",
+                "For Each Rng In Selection",
+                "Selection.Replace What:=rc, Replacement:=\"\"",
+                "Next",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "89. Word Count from Entire Worksheet",
+            "description": "It can help you to count all the words from a worksheet.",
+            "code": [
+                "Sub Word_Count_Worksheet()",
+                "Dim WordCnt As Long",
+                "Dim rng As Range",
+                "Dim S As String",
+                "Dim N As Long",
+                "For Each rng In ActiveSheet.UsedRange.Cells",
+                "S = Application.WorksheetFunction.Trim(rng.Text)",
+                "N = 0",
+                "If S &lt;&gt; vbNullString Then",
+                "N = Len(S) - Len(Replace(S, \" \", \"\")) + 1",
+                "End If",
+                "WordCnt = WordCnt + N",
+                "Next rng",
+                "MsgBox \"There are total \" _",
+                "&amp; Format(WordCnt, \"#,##0\") &amp; _",
+                "\" words in the active worksheet\"",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "90. Remove the Apostrophe from a Number",
+            "description": "If you have numeric data with an apostrophe before each number, you run this code to remove it.",
+            "code": [
+                "Sub removeApostrophes()",
+                "Selection.Value = Selection.Value",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "91. Remove Decimals from Numbers",
+            "description": "This code will help you remove all the decimals from the numbers from the selected range.",
+            "code": [
+                "Sub removeDecimals()",
+                "Dim lnumber As Double",
+                "Dim lResult As Long",
+                "Dim rng As Range",
+                "For Each rng In Selection",
+                "rng.Value = Int(rng)",
+                "rng.NumberFormat = \"0\"",
+                "Next rng",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "92. Multiply all the Values by a Number",
+            "description": "Let\u2019s have a list of numbers, and you want to multiply all the numbers with a particular one. To use this code, Select that range of cells and run this code. It will first ask you for the number with whom you want to multiply and then instantly multiply all the numbers with it.",
+            "code": [
+                "Sub addNumber()",
+                "Dim rng As Range",
+                "Dim i As Integer",
+                "i = InputBox(\"Enter number to multiple\", \"Input Required\")",
+                "For Each rng In Selection",
+                "If WorksheetFunction.IsNumber(rng) Then",
+                "rng.Value = rng + i",
+                "Else",
+                "End If",
+                "Next rng",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "93. Add a Number in all the Numbers",
+            "description": "Just like multiplying, you can also add a number into a set of numbers.",
+            "code": [
+                "Sub addNumber()",
+                "Dim rng As Range",
+                "Dim i As Integer",
+                "i = InputBox(\"Enter number to multiple\", \"Input Required\")",
+                "For Each rng In Selection",
+                "If WorksheetFunction.IsNumber(rng) Then",
+                "rng.Value = rng + i",
+                "Else",
+                "End If",
+                "Next rng",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "94. Calculate the Square Root",
+            "description": "You can use this code to calculate square root without applying a formula. It will simply check all the selected cells and convert numbers to their square root.",
+            "code": [
+                "Sub getSquareRoot()",
+                "Dim rng As Range",
+                "Dim i As Integer",
+                "For Each rng In Selection",
+                "If WorksheetFunction.IsNumber(rng) Then",
+                "rng.Value = Sqr(rng)",
+                "Else",
+                "End If",
+                "Next rng",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "95. Calculate the Cube Root",
+            "description": "You can use this code to calculate cube root without applying a formula. It will simply check all the selected cells and convert numbers to their cube root.",
+            "code": [
+                "Sub getCubeRoot()",
+                "Dim rng As Range",
+                "Dimi As Integer",
+                "For Each rng In Selection",
+                "If WorksheetFunction.IsNumber(rng) Then",
+                "rng.Value = rng ^ (1 / 3)",
+                "Else",
+                "End If",
+                "Nextrng",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "96. Add A-Z Alphabets in a Range",
+            "description": "Just like serial numbers you can also insert alphabets in your worksheet. Below are the codes which you can use.",
+            "code": [
+                "Sub addsAlphabets1()",
+                "Dim i As Integer",
+                "For i = 65 To 90",
+                "ActiveCell.Value = Chr(i)",
+                "ActiveCell.Offset(1, 0).Select",
+                "Next i",
+                "End Sub",
+                "Sub addsAlphabets2()",
+                "Dim i As Integer",
+                "For i = 97 To 122",
+                "ActiveCell.Value = Chr(i)",
+                "ActiveCell.Offset(1, 0).Select",
+                "Next i",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "97. Convert Roman Numbers into Arabic Numbers",
+            "description": "Sometimes, it\u2019s really hard to understand Roman numbers as serial numbers. This code will help you to convert Roman numbers into Arabic numbers.",
+            "code": [
+                "Sub convertToNumbers()",
+                "Dim rng As Range",
+                "Selection.Value = Selection.Value",
+                "For Each rng In Selection",
+                "If Not WorksheetFunction.IsNonText(rng) Then",
+                "rng.Value = WorksheetFunction.Arabic(rng)",
+                "End If",
+                "Next rng",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "98. Remove Negative Signs",
+            "description": "This code will check all the cells in the selection and convert all the negative numbers into positive ones. Just select a range and run this code.",
+            "code": [
+                "Sub removeNegativeSign()",
+                "Dim rng As Range",
+                "Selection.Value = Selection.Value",
+                "For Each rng In Selection",
+                "If WorksheetFunction.IsNumber(rng) Then",
+                "rng.Value = Abs(rng)",
+                "End If",
+                "Next rng",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "99. Replace Blank Cells with Zeros",
+            "description": "For data with blank cells, you can use the code below to add zeros in all those cells. It makes easier to use those cells in further calculations.",
+            "code": [
+                "Sub replaceBlankWithZero()",
+                "Dim rng As Range",
+                "Selection.Value = Selection.Value",
+                "For Each rng In Selection",
+                "If rng = \"\" Or rng = \" \" Then",
+                "rng.Value = \"0\"",
+                "Else",
+                "End If",
+                "Next rng",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "100. Create a Simple Timer",
+            "description": "",
+            "code": [
+                "Sub SimpleTimer()",
+                "Dim countDown As Date",
+                "countDown = Now + TimeValue(\"00:01:00\") ' Set timer for 1 minute",
+                "Do Until Now >= countDown",
+                "DoEvents",
+                "Loop",
+                "MsgBox \"Time's up!\"",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "101. Convert Text to Columns Automatically",
+            "description": "",
+            "code": [
+                "Sub TextToColumnsAuto()",
+                "Dim rng As Range",
+                "Set rng = ThisWorkbook.Sheets(\"Sheet1\").Range(\"A1:A100\")",
+                "rng.TextToColumns Destination:=rng, DataType:=xlDelimited, Comma:=True",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "102. Unprotect All Sheets in a Workbook",
+            "description": "",
+            "code": [
+                "Sub UnprotectSheets()",
+                "Dim ws As Worksheet",
+                "For Each ws In ThisWorkbook.Sheets",
+                "ws.Unprotect Password:=\"password\"",
+                "Next ws",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "103. Protect All Sheets in a Workbook",
+            "description": "",
+            "code": [
+                "Sub CombineWorkbooks()",
+                "Dim FilesToOpen",
+                "Dim x As Integer",
+                "FilesToOpen = Application.GetOpenFilename(FileFilter:=\"Microsoft Excel Files (*.xls; *.xlsx; *.xlsm), *.xls; *.xlsx; *.xlsm\", MultiSelect:=True, Title:=\"Files to Merge\")",
+                "If TypeName(FilesToOpen) = \"Boolean\" Then Exit Sub",
+                "x = 1",
+                "While x <= UBound(FilesToOpen)",
+                "Workbooks.Open Filename:=FilesToOpen(x)",
+                "Sheets().Move After:=ThisWorkbook.Sheets(ThisWorkbook.Sheets.Count)",
+                "x = x + 1",
+                "Wend",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "104. Combine Multiple Excel Files Into One Workbook",
+            "description": "",
+            "code": [
+                "Sub ProtectSheets()",
+                "Dim ws As Worksheet",
+                "For Each ws In ThisWorkbook.Sheets",
+                "ws.Protect Password:=\"password\"",
+                "Next ws",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "105. Send an Email via Outlook",
+            "description": "",
+            "code": [
+                "Sub SendEmail()",
+                "Dim OutApp As Object",
+                "Dim OutMail As Object",
+                "Set OutApp = CreateObject(\"Outlook.Application\")",
+                "Set OutMail = OutApp.CreateItem(0)",
+                "With OutMail",
+                ".To = \"recipient@example.com\"",
+                ".CC = \"\"",
+                ".BCC = \"\"",
+                ".Subject = \"This is the Subject Line\"",
+                ".Body = \"Hello World!\"",
+                ".Send",
+                "End With",
+                "Set OutMail = Nothing",
+                "Set OutApp = Nothing",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "106. Insert Multiple Rows Between Each Row in a Worksheet",
+            "description": "",
+            "code": [
+                "Sub InsertRows()",
+                "Dim i As Long",
+                "For i = ThisWorkbook.Sheets(\"Sheet1\").UsedRange.Rows.Count To 1 Step -1",
+                "ThisWorkbook.Sheets(\"Sheet1\").Rows(i + 1).Resize(2).Insert",
+                "Next i",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "107. Automatically Save a Backup Copy of a Workbook",
+            "description": "",
+            "code": [
+                "Sub SaveBackup()",
+                "Dim backupPath As String",
+                "backupPath = \"C:\\Backup\\MyWorkbook_\" & Format(Now(), \"yyyymmdd_hhmmss\") & \".xlsm\"",
+                "ThisWorkbook.SaveCopyAs backupPath",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "108. Delete All Charts in a Worksheet",
+            "description": "",
+            "code": [
+                "Sub DeleteCharts()",
+                "Dim cht As ChartObject",
+                "For Each cht In ActiveSheet.ChartObjects",
+                "cht.Delete",
+                "Next cht",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "109. Automatically Close Workbook After Inactivity",
+            "description": "",
+            "code": [
+                "Sub AutoClose()",
+                "Dim countDown As Date",
+                "countDown = Now + TimeValue(\"00:10:00\") ' Set timer for 10 minutes",
+                "Do Until Now >= countDown",
+                "If Not Application.Interactive Then Exit Sub",
+                "DoEvents",
+                "Loop",
+                "ThisWorkbook.Close SaveChanges:=False",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "110. Export Each Worksheet to a New Workbook",
+            "description": "",
+            "code": [
+                "Sub ExportSheetsToWorkbooks()",
+                "Dim ws As Worksheet",
+                "For Each ws In ThisWorkbook.Worksheets",
+                "ws.Copy",
+                "ActiveWorkbook.SaveAs \"C:\\ExportedSheets\\\" & ws.Name & \".xlsx\"",
+                "ActiveWorkbook.Close False",
+                "Next ws",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "111. Create a Directory from VBA",
+            "description": "",
+            "code": [
+                "Sub CreateDirectory()",
+                "Dim path As String",
+                "path = \"C:\\NewFolder\"",
+                "If Not Dir(path, vbDirectory) <> \"\" Then",
+                "MkDir path",
+                "End If",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "112. Convert Numbers to Words (Functions)",
+            "description": "",
+            "code": [
+                "Function NumberToWords(ByVal MyNumber)",
+                "Dim Units As String, Teens As String, Tens As String",
+                "Dim Result As String",
+                "' Arrays for converting number to words",
+                "Units = \"|One|Two|Three|Four|Five|Six|Seven|Eight|Nine\"",
+                "Teens = \"|Eleven|Twelve|Thirteen|Fourteen|Fifteen|Sixteen|Seventeen|Eighteen|Nineteen\"",
+                "Tens = \"|Ten|Twenty|Thirty|Forty|Fifty|Sixty|Seventy|Eighty|Ninety\"",
+                "' Logic to convert number to words goes here",
+                "' Return the result as a string",
+                "Result = \"Logic not implemented\"",
+                "NumberToWords = Result",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "113. Add a Watermark to a Worksheet",
+            "description": "",
+            "code": [
+                "Sub AddWatermark()",
+                "ActiveSheet.Shapes.AddTextEffect(msoTextEffect1, \"Confidential\", \"Arial\", 50, msoFalse, msoFalse, 100, 100).Select",
+                "With Selection.ShapeRange.Fill",
+                ".Visible = msoTrue",
+                ".ForeColor.RGB = RGB(217, 217, 217)",
+                ".Transparency = 0.5",
+                "End With",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "114. Sort Data in a Worksheet Automatically",
+            "description": "",
+            "code": [
+                "Sub AutoSort()",
+                "With ThisWorkbook.Sheets(\"Sheet1\").Range(\"A1:D100\")",
+                ".Sort Key1:=.Cells(1, 1), Order1:=xlAscending, Header:=xlYes",
+                "End With",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "115. Print All Workbooks in a Folder",
+            "description": "",
+            "code": [
+                "Sub PrintAllWorkbooks()",
+                "Dim folderPath As String",
+                "Dim filename As String",
+                "folderPath = \"C:\\MyFolder\\\"",
+                "filename = Dir(folderPath & \"*.xls*\")",
+                "Do While filename <> \"\"",
+                "Workbooks.Open Filename:=folderPath & filename",
+                "ActiveWorkbook.PrintOut Copies:=1",
+                "ActiveWorkbook.Close False",
+                "filename = Dir()",
+                "Loop",
+                "End Sub"
+            ]
+        },
+        {
+            "title": "116. Highlight Cells That Contain Formulas",
+            "description": "",
+            "code": [
+                "Sub HighlightFormulas()",
+                "Dim cell As Range",
+                "For Each cell In ActiveSheet.UsedRange",
+                "If cell.HasFormula Then",
+                "cell.Interior.Color = RGB(255, 255, 0)",
+                "End If",
+                "Next cell",
+                "End Sub"
+            ]
+        }
+    ]
+}
